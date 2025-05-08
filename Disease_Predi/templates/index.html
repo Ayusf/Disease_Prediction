@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .symptoms-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .symptom-item {
+            display: flex;
+            align-items: center;
+        }
+        .symptom-item input {
+            margin-right: 8px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 0 auto;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #e8f4fc;
+            display: none;
+        }
+        .disease-name {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Disease Prediction System</h1>
+    
+    <div class="form-container">
+        <h2>Symptom Checker</h2>
+        <p>Select the symptoms you're experiencing:</p>
+        
+        <div class="symptoms-grid">
+            <div class="symptom-item">
+                <input type="checkbox" id="fever" name="fever">
+                <label for="fever">Fever</label>
+            </div>
+            <div class="symptom-item">
+                <input type="checkbox" id="headache" name="headache">
+                <label for="headache">Headache</label>
+            </div>
+            <div class="symptom-item">
+                <input type="checkbox" id="nausea" name="nausea">
+                <label for="nausea">Nausea</label>
+            </div>
+            <div class="symptom-item">
+                <input type="checkbox" id="vomiting" name="vomiting">
+                <label for="vomiting">Vomiting</label>
+            </div>
+            <div class="symptom-item">
+                <input type="checkbox" id="fatigue" name="fatigue">
+                <label for="fatigue">Fatigue</label>
+            </div>
+            <div class="symptom-item">
+                <input type="checkbox" id="joint_pain" name="joint_pain">
+                <label for="joint_pain">Joint Pain</label>
+            </div>
+            <div class="symptom-item">
+                <input type="checkbox" id="skin_rash" name="skin_rash">
+                <label for="skin_rash">Skin Rash</label>
+            </div>
+            <div class="symptom-item">
+                <input type="checkbox" id="cough" name="cough">
+                <label for="cough">Cough</label>
+            </div>
+            <div class="symptom-item">
+                <input type="checkbox" id="weight_loss" name="weight_loss">
+                <label for="weight_loss">Weight Loss</label>
+            </div>
+            <div class="symptom-item">
+                <input type="checkbox" id="yellow_eyes" name="yellow_eyes">
+                <label for="yellow_eyes">Yellow Eyes</label>
+            </div>
+        </div>
+        
+        <button id="predict-btn">Predict Disease</button>
+        
+        <div class="result" id="result">
+            <h3>Prediction Result</h3>
+            <p>Based on your symptoms, you might have:</p>
+            <p class="disease-name" id="predicted-disease">[Disease Name]</p>
+            <p><small>Note: This is a predictive model's output and not a medical diagnosis. Please consult a healthcare professional for accurate diagnosis.</small></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('predict-btn').addEventListener('click', function() {
+            // Collect form data
+            const symptoms = {
+                fever: document.getElementById('fever').checked ? 1 : 0,
+                headache: document.getElementById('headache').checked ? 1 : 0,
+                nausea: document.getElementById('nausea').checked ? 1 : 0,
+                vomiting: document.getElementById('vomiting').checked ? 1 : 0,
+                fatigue: document.getElementById('fatigue').checked ? 1 : 0,
+                joint_pain: document.getElementById('joint_pain').checked ? 1 : 0,
+                skin_rash: document.getElementById('skin_rash').checked ? 1 : 0,
+                cough: document.getElementById('cough').checked ? 1 : 0,
+                weight_loss: document.getElementById('weight_loss').checked ? 1 : 0,
+                yellow_eyes: document.getElementById('yellow_eyes').checked ? 1 : 0
+            };
+            
+            // In a real implementation, you would send this data to your backend
+            // For this example, we'll simulate a response
+            simulatePrediction(symptoms);
+        });
+        
+        function simulatePrediction(symptoms) {
+            // This is where you would normally make an API call to your backend
+            // For demonstration, we'll use a mock response
+            
+            // Map of disease codes to names (from your notebook)
+            const diseaseMap = {
+                0: "Paralysis (brain hemorrhage)",
+                1: "Hypertension",
+                2: "Hepatitis B",
+                3: "Impetigo",
+                4: "Chronic cholestasis",
+                5: "Hepatitis C",
+                6: "Typhoid",
+                7: "Dimorphic hemorrhoids(piles)",
+                8: "Vertigo (Benign paroxysmal Positional Vertigo)",
+                9: "Cervical spondylosis",
+                10: "Tuberculosis",
+                11: "Hyperthyroidism",
+                12: "Malaria",
+                13: "Gastroenteritis",
+                14: "Osteoarthritis",
+                15: "Heart attack",
+                16: "Dengue",
+                17: "Pneumonia",
+                18: "Urinary tract infection",
+                19: "Hypoglycemia",
+                20: "Bronchial Asthma",
+                21: "Arthritis",
+                22: "Hepatitis D",
+                23: "Hypothyroidism",
+                24: "Acne",
+                25: "GERD",
+                26: "Peptic ulcer disease",
+                27: "Psoriasis",
+                28: "Drug Reaction",
+                29: "Diabetes",
+                30: "Varicose veins",
+                31: "Hepatitis A",
+                32: "Hepatitis E",
+                33: "Migraine",
+                34: "Allergy",
+                35: "Jaundice",
+                36: "AIDS",
+                37: "Alcoholic hepatitis"
+            };
+            
+            // Simulate the model's prediction (random for demo)
+            // In reality, you would send the symptoms to your model and get a prediction
+            const randomDiseaseCode = Math.floor(Math.random() * 38);
+            const predictedDisease = diseaseMap[randomDiseaseCode];
+            
+            // Display the result
+            document.getElementById('predicted-disease').textContent = predictedDisease;
+            document.getElementById('result').style.display = 'block';
+            
+            // Scroll to the result
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
